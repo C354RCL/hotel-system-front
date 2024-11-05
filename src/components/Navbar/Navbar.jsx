@@ -1,4 +1,3 @@
-import React from 'react';
 import FechaHoy from './FechaHoy';
 
 function Navbar() {

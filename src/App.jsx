@@ -2,8 +2,8 @@ import React from 'react'
 import Login from './components/Login.jsx'
 import MenuInicial from './components/MenuInicial/MenuInicial.jsx'
 
-const isAdmin = true;
-const isLogged = false;
+const isAdmin = false;
+const isLogged = true;
 
 
 const App = () => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function TablaReserva(props) {
+function TablaReserva({ reservaciones }) {
   return (
     <div className='p-10 wfull place-content-center'>
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -31,7 +31,7 @@ function TablaReserva(props) {
           </tr>
         </thead>
         <tbody>
-          {props.reservaciones.map((reservacion, index) => (
+          {reservaciones.map((reservacion, index) => (
             <tr key={index} className='bg-white border-b dark:bg-gray-800 dark:border-gray-700'>
               <td>{reservacion.noHabitacion}</td>
               <td>{reservacion.tipoHabitacion}</td>
