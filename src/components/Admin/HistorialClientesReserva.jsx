@@ -52,7 +52,7 @@ const HistorialReservas = () => {
           <button type='submit' className='p-2 bg-teal-700 text-white'>Buscar</button>
         </form>
       </div>
-      <TablaClientesReserva reservaciones={reservaciones} />
+      <TablaClientesReserva reservaciones={ reservaciones } />
     </div>
   )
 }

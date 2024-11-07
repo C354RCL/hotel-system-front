@@ -13,7 +13,7 @@ function MenuInicial({isAdmin}) {
     <div className='text-center h-screen flex flex-col'>
       <Navbar />
       <div className='flex-1 overflow-y-auto'>
-        { isAdmin ?  < Graficas /> : <FormularioNoche /> }
+        { isAdmin ?  < HistorialReservas /> : <FormularioNoche /> }
       </div>
     </div>
   )

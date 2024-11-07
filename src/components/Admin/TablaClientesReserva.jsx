@@ -1,32 +1,18 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
-function TablaClientesReserva({ reservaciones }) {
+function TablaClientesReserva({ reservaciones = [] }) {
   return (
-    <div className='p-10 wfull place-content-center'>
+    <div className='p-10 w-full place-content-center'>
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className='text-xs text-teal-700 uppercase bg-emerald-50 dark:bg-teal-700 dark:text-emerald-50'>
           <tr>
-            <th scope='col' className='px-6 py-3'>
-              Nombre Cliente
-            </th>
-            <th scope='col' className='px-6 py-3'>
-              Número de Telefono
-            </th>
-            <th scope='col' className='px-6 py-3'>
-              Habitación
-            </th>
-            <th scope='col' className='px-6 py-3'>
-              Día llegada
-            </th>
-            <th scope='col' className='px-6 py-3'>
-              Día salida
-            </th>
-            <th scope='col' className='px-6 py-3'>
-              Recepcionista
-            </th>
-            <th scope='col' className='px-6 py-3'>
-              Total
-            </th>
+            <th scope='col' className='px-6 py-3'>Nombre Cliente</th>
+            <th scope='col' className='px-6 py-3'>Número de Telefono</th>
+            <th scope='col' className='px-6 py-3'>Habitación</th>
+            <th scope='col' className='px-6 py-3'>Día llegada</th>
+            <th scope='col' className='px-6 py-3'>Día salida</th>
+            <th scope='col' className='px-6 py-3'>Recepcionista</th>
+            <th scope='col' className='px-6 py-3'>Total</th>
           </tr>
         </thead>
         <tbody>
@@ -44,7 +30,7 @@ function TablaClientesReserva({ reservaciones }) {
         </tbody>
       </table>
     </div>
-  )
+  );
 }
 
 TablaClientesReserva.propTypes = {
@@ -58,11 +44,7 @@ TablaClientesReserva.propTypes = {
       recepcionista: PropTypes.string.isRequired,
       total: PropTypes.number.isRequired,
     })
-  ).isRequired,
-}
+  ),
+};
 
-TablaClientesReserva.defaultProps = {
-  reservaciones: []
-}
-
-export default TablaClientesReserva
+export default TablaClientesReserva;
