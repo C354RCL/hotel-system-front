@@ -1,5 +1,5 @@
 import React from 'react'
-import TablaReserva from './TablaReserva.jsx'
+import TablaReserva from './components/TablaReserva.jsx'
 
 var reservaciones = [{
   noHabitacion: 1,

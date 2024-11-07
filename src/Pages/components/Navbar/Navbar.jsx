@@ -1,10 +1,11 @@
 import FechaHoy from './FechaHoy';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
     <nav className="bg-teal-800 px-4 py-2 text-white flex justify-between items-center">
       <div className="px-4 py-2 flex justify-between">
-        <a href="#" className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
+        <Link to="/" className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -14,8 +15,8 @@ function Navbar() {
             <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
             <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
           </svg>
-        </a>
-        <a href="#" className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
+        </Link>
+        <Link to="/nuevo/horas" className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -30,8 +31,8 @@ function Navbar() {
               d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
             />
           </svg>
-        </a>
-        <a href="#" className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
+        </Link>
+        <Link to="/nuevo/noches" className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -46,8 +47,8 @@ function Navbar() {
               d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"
             />
           </svg>
-        </a>
-        <a href="#" className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
+        </Link>
+        <Link to="/admin/inicio" className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -61,7 +62,27 @@ function Navbar() {
               clipRule="evenodd"
             />
           </svg>
-        </a>
+        </Link>
+        <Link to='/admin/graficas' className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24" fill="currentColor" 
+          className="size-10">
+          <path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75ZM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 0 1-1.875-1.875V8.625ZM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 0 1 3 19.875v-6.75Z" />
+        </svg>
+
+        </Link>
+        <Link to='/historiales' className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24" 
+          fill="currentColor" 
+          className="size-10">
+          <path d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375Z" />
+         <path fillRule="evenodd" d="m3.087 9 .54 9.176A3 3 0 0 0 6.62 21h10.757a3 3 0 0 0 2.995-2.824L20.913 9H3.087Zm6.163 3.75A.75.75 0 0 1 10 12h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1-.75-.75Z" clipRule="evenodd" />
+        </svg>
+
+        </Link>
       </div>
 
       <div>
@@ -69,7 +90,7 @@ function Navbar() {
       </div>
 
       <div className="px-4 py-2 flex justify-center items-center text-white">
-        <a href="#" className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
+        <Link to="/login" className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
           <ul className="flex items-center justify-center">
             <li className="block m-2">Nombre del Usuario</li>
             <li className="block mx-2">
@@ -87,7 +108,7 @@ function Navbar() {
               </svg>
             </li>
           </ul>
-        </a>
+        </Link>
       </div>
     </nav>
   );

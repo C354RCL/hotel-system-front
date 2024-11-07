@@ -1,5 +1,5 @@
 import React from 'react'
-import TablaClientesReserva from './TablaClientesReserva'
+import TablaClientesReserva from './components/TablaClientesReserva.jsx'
 
 var reservaciones = [{
   nombreCliente: 'Juan',
