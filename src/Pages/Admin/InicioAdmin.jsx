@@ -1,6 +1,6 @@
 import React from 'react'
-import InfoCard from './components/InfoCard.jsx'
-import InfoDinero from './components/InfoDinero.jsx'
+import InfoCard from '../components/InfoCard.jsx'
+import InfoDinero from '../components/InfoDinero.jsx'
 
 var servicioPorHoras = 40;
 var servioPorNoche = 15;

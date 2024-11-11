@@ -18,11 +18,9 @@ const FormularioHoras = () => {
               Tipo de habitación
             </label>
             <select id='tipoDeHabitacion' className='mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none'>
-              <option value='1'>1 habitación</option>
-              <option value='2'>2 habitaciones</option>
-              <option value='3'>3 habitaciones</option>
-              <option value='4'>4 habitaciones</option>
-              <option value='5'>5 habitaciones</option>
+              <option value='1'>Matrimonial</option>
+              <option value='2'>King Size</option>
+              <option value='3'>Doble</option>
             </select>
             </div>
           </FormRow>

@@ -1,4 +1,4 @@
-import BarChart from './components/BarChart.jsx';
+import BarChart from '../components/BarChart.jsx';
 
 const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
