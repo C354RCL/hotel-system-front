@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <nav className="bg-teal-800 px-4 py-2 text-white flex justify-between items-center">
       <div className="px-4 py-2 flex justify-between">
-        <Link to="/" className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
+        <Link to="/nuevo" className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

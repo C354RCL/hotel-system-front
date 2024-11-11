@@ -28,10 +28,10 @@ const FormularioHoras = () => {
           </FormRow>
           <FormRow>
             <div className='flex flex-col w-1/3'>
-              <label htmlFor='fechaDeEntrada' className='px-5'>
-                Fecha de entrada
+            <label htmlFor='diaDeEntrada' className='px-5'>
+                Dia de entrada
               </label>
-              <input type='date' id='fechaDeEntrada' className='mx-5 p-2 dark:text-teal-950 border-fuchsia-950 dark:border-teal-50 focus:outline-none' />
+              <input type='date' id='diaDeEntrada' className='mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none' />
             </div>
             <div className='flex flex-col w-1/3'>
               <label htmlFor='horaDeEntrada' className='px-5'>

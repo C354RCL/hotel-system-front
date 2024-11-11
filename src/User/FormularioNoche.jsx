@@ -4,7 +4,7 @@ import FormRow from './FormRow.jsx'
 const FormularioNoche = () => {
   return (
     <div className='p-10 w-full place-content-center'>
-        <h1 className='text-3xl'>Servicio por 4 horas</h1>
+        <h1 className='text-3xl'>Servicio por Noches</h1>
         <form className='p-5 block justify-center'>
           <FormRow>
             <div className='flex flex-col w-1/3'>

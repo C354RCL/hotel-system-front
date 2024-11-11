@@ -5,7 +5,7 @@ import cama from '../assets/img/cama.png'
 
 const Historiales = () => {
   return (
-    <div className='flex justify-center'>
+    <div className='flex justify-center '>
     <Link to='/historial/reservas' className='bg-teal-700 hover:bg-teal-950 text-white font-bold py-2 px-4 m-6 rounded-lg'>
         <img src={reloj} alt='Por horas' className='w-1/2 m-auto p-2' />
         <h1 className='text-center text-2xl'>Por horas</h1>
