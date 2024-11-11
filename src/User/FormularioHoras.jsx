@@ -69,7 +69,7 @@ const FormularioHoras = () => {
             </div>
           </FormRow>
           <FormRow>
-          <button type='submit' className='bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 m-6 rounded-lg'>Borrar</button>
+          <button type='reset' className='bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 m-6 rounded-lg'>Borrar</button>
           <button type='submit' className='bg-teal-700 hover:bg-teal-950 text-white font-bold py-2 px-4 m-6 rounded-lg'>Agregar</button>
           </FormRow>
           

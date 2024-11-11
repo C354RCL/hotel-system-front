@@ -1,6 +1,37 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Login() {
+export function Login() {
+  // Inicializamos las variables como cadenas vacias
+  const [userName, setUserName] = useState("");
+  const [passwd, setPasswd] = useState("");
+  const navigate = useNavigate();
+  
+  //Manjeador de eventos de userName
+  const handleUserName = e => {
+    setUserName(e.target.value);
+    console.log(e.target.value);
+  }
+
+  // Manejador de eventos de passwd
+  const handlePasswd = e => {
+    setPasswd(e.target.value);
+    console.log(e.target.value);
+  }
+
+  //Manejador de eventos de boton Iniciar Sesion
+  const handleLogIn = async e => {
+    e.preventDefault();
+
+    try{
+      // Guardamos userName en el localStorage
+      localStorage.setItem("userName", userName);
+      navigate("/admin/inicio");
+    } catch (err) {
+      console.error("Error: ", err)
+    }
+  }
+  
   return (
     <div className="flex items-center justify-center h-screen overflow-hidden">
       <div className="flex justify-center my-auto">
@@ -35,6 +66,8 @@ function Login() {
                 id="username"
                 name="username"
                 placeholder="Usuario"
+                value = {userName}
+                onChange={handleUserName}
                 className="w-full py-2 px-4 border border-gray-200 shadow-sm focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-70 focus:bg-gray-100"
               />
             </div>
@@ -48,6 +81,8 @@ function Login() {
                 id="password"
                 name="password"
                 placeholder="******"
+                value= {passwd}
+                onChange={handlePasswd}
                 className="w-full py-2 px-4 border border-gray-200 shadow-sm focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-70 focus:bg-gray-100"
               />
             </div>
@@ -56,6 +91,7 @@ function Login() {
               <input
                 type="button"
                 value="Iniciar Sesión"
+                onClick={handleLogIn}
                 className="w-2/3 bg-teal-700 hover:bg-teal-950 text-white font-bold py-2 px-4 m-2"
               />
             </div>

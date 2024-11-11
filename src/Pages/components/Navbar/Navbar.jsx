@@ -2,6 +2,7 @@ import FechaHoy from './FechaHoy';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
+  const userName = localStorage.getItem("userName");
   return (
     <nav className="bg-teal-800 px-4 py-2 text-white flex justify-between items-center">
       <div className="px-4 py-2 flex justify-between">
@@ -92,7 +93,7 @@ function Navbar() {
       <div className="px-4 py-2 flex justify-center items-center text-white">
         <Link to="/login" className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
           <ul className="flex items-center justify-center">
-            <li className="block m-2">Nombre del Usuario</li>
+            <li className="block m-2">{userName}</li>
             <li className="block mx-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
