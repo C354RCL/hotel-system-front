@@ -1,4 +1,4 @@
-import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
+import { Route, createHashRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout.jsx'
 import Login from './Pages/Login.jsx'
 import MenuInicial from './Pages/MenuInicial.jsx'
@@ -16,7 +16,7 @@ import Habitaciones from './Pages/Habitaciones.jsx'
 const isAdmin = false;
 const isLogged = false;
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   createRoutesFromElements( 
   <Route path='/' element={<MainLayout />}>
      <Route index element={<MenuInicial isAdmin={isAdmin} /> } />
