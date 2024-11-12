@@ -24,6 +24,7 @@ export function Login() {
     e.preventDefault();
 
     try{
+      localStorage.clear();
       // Guardamos userName en el localStorage
       localStorage.setItem("userName", userName);
       navigate("/admin/inicio");
