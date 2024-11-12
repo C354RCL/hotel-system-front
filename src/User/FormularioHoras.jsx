@@ -43,11 +43,9 @@ const FormularioHoras = () => {
 
     try{
       // Creamos la peticion a la API 
-      const res = await fetch("http;//localhost:30", {
+      const res = await fetch("http://localhost:300", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: {"Content-Type": "application/json"},
         // Convertimos a JSON los valores 
         body: JSON.stringify({noHabitacion, tipoHabitacion, diaEntrada, horaEntrada, horaSalida, vehiculo, recepcionista, total})
       })
@@ -56,12 +54,11 @@ const FormularioHoras = () => {
       // La respuesta del servidor la convertimos a JSON 
       const data = await res.json();
 
-      if(data.code === 200) {
-        alert("Servicio registrado correctamente");
+      if(data.code === 200){
+        alert("Servicio registrado correctamente")
       } else {
         alert("Ocurrio un error, intentelo nuevamente");
       }
-
     } catch (err) {
       console.error("Error: ", err);
     }
