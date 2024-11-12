@@ -5,9 +5,10 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server : {
-    port : 3000,
+    port : 5173,
   },
+  base: './', // Asegura que las rutas sean relativas
   build: {
-    outDir: 'build', // Asegura que Vite cree la build en una carpeta llamada 'build'
-},
+    outDir: 'dist', // Cambia a `dist` para hacerla compatible con Electron
+  },
 })
