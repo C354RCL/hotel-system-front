@@ -19,9 +19,9 @@ var reservaciones = [{
   total: 100
 },
 {
-  nombreCliente: 'Juan',
+  nombreCliente: 'Cesar',
   numTelefono: '12345678',
-  habitacion: '1',
+  habitacion: '5',
   diaLlegada: '2021-05-03',
   diaSalida: '2021-05-04',
   recepcionista: 'Juan',  
@@ -30,6 +30,28 @@ var reservaciones = [{
 ]
 
 const HistorialReservas = () => {
+  const [reservacionesClientesData, setReservacionesClientesData] = useState([]);
+  useEffect(() => {
+    // Creamos una funcion asincrona 
+    const fetchData = async () => {
+      try{
+        // Peticion a la API
+        const res = await fetch("http;",
+          {
+            method: "GET",
+            headers : {"Content-Type": "application/json"}
+          }
+        )
+
+        // Convertimos la respuesta en formato JSON
+        const data =  reservaciones;
+        setReservacionesClientesData(data);
+      } catch (err) {
+        console.error("Error: ", err);
+      }
+    }
+    fetchData();
+  })
   return (
     <div className='p-10 w-full place-content-center'>
       <h1 className='text-3xl'>Historial de reservas</h1>
@@ -51,7 +73,7 @@ const HistorialReservas = () => {
           <button type='submit' className='p-2 bg-teal-700 text-white'>Buscar</button>
         </form>
       </div>
-      <TablaClientesReserva reservaciones={ reservaciones } />
+      <TablaClientesReserva reservaciones={ reservacionesClientesData } />
     </div>
   )
 }
