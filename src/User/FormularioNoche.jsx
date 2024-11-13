@@ -64,9 +64,8 @@ const FormularioNoche = () => {
   };
   return (
     <div className="p-10 w-full place-content-center">
-      <h1 className="text-3xl">Servicio por Noches</h1>
+      <h1 className="text-3xl text-center">Servicio por Noches</h1>
       <form className="p-5 block justify-center">
-        t
         <FormRow>
           <div className="flex flex-col w-1/3">
             <label htmlFor="nombre" className="px-5">

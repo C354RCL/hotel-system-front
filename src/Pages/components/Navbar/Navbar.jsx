@@ -91,7 +91,7 @@ function Navbar() {
       </div>
 
       <div className="px-4 py-2 flex justify-center items-center text-white">
-        <Link to="/login" className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
+        <Link to="/" className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
           <ul className="flex items-center justify-center">
             <li className="block m-2">{userName}</li>
             <li className="block mx-2">

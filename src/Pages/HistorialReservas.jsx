@@ -61,8 +61,6 @@ const HistorialReservas = () => {
           <input type='text' name='nombre' id='nombre' className='m-5 p-2 bg-inherit border-b border-fuchsia-950 dark:border-teal-50' />
           <label htmlFor='fecha' className='p-5'>Fecha</label>
           <input type='date' name='fecha' id='fecha' className='m-5 p-2 dark:bg-teal-700 border border-fuchsia-950 dark:border-teal-50 focus:outline-none' />
-          <label htmlFor='hora' className='p-5'>Hora de entrada</label>
-          <input type='time' name='hora' id='hora' className='m-5 p-2 dark:bg-teal-700 border border-fuchsia-950 dark:border-teal-50 focus:outline-none' />
           <label htmlFor='tipo' className='p-5'>Tipo de habitacion</label>
           <select name='tipo' id='tipo' className='m-5 p-2 bg-inherit border border-fuchsia-950 dark:border-teal-50 focus:outline-none'>
           <option value='' className='dark:bg-teal-700'>Cualquier</option>

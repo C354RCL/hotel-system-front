@@ -69,7 +69,7 @@ export function Login() {
                 placeholder="Usuario"
                 value = {userName}
                 onChange={handleUserName}
-                className="w-full py-2 px-4 border border-gray-200 shadow-sm focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-70 focus:bg-gray-100"
+                className="w-full py-2 px-4 border border-gray-200 shadow-sm dark:text-slate-900 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-70 focus:bg-gray-100"
               />
             </div>
 
@@ -84,7 +84,7 @@ export function Login() {
                 placeholder="******"
                 value= {passwd}
                 onChange={handlePasswd}
-                className="w-full py-2 px-4 border border-gray-200 shadow-sm focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-70 focus:bg-gray-100"
+                className="w-full py-2 px-4 border border-gray-200 shadow-sm dark:text-slate-900 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-70 focus:bg-gray-100"
               />
             </div>
 

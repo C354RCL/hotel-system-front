@@ -19,8 +19,7 @@ const isLogged = false;
 const router = createHashRouter(
   createRoutesFromElements( 
   <Route path='/' element={<MainLayout />}>
-     <Route index element={<MenuInicial isAdmin={isAdmin} /> } />
-     <Route path = '/login' element = { < Login /> }  />
+     <Route index element = { < Login /> }  />
      <Route path='/admin/graficas' element={<Graficas />} />
      <Route path='/admin/inicio' element={<InicioAdmin />} />
      <Route path='/nuevo' element={<NuevoServicio />} />
