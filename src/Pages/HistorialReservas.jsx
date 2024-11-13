@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import TablaReserva from './components/TablaReserva.jsx'
 
-var reservaciones = [{
+let reservaciones = [{
   noHabitacion: 1,
   tipoHabitacion: 'Cuarto',
   fechaReserva: '2021-05-01',
@@ -22,14 +22,36 @@ var reservaciones = [{
 {
   noHabitacion: 3,
   tipoHabitacion: 'Cuarto',
-  fechaReserva: '2021-05-03',
+  fechaReserva: '2021-05-02',
   horaEntrada: '08:00',
   horaSalida: '12:00',
-  recepcionista: 'Juan',
+  recepcionista: 'Pedro',
   precio: 100
 }]
 
 const HistorialReservas = () => {
+  const [reservacionesData, setReservacionesData] = useState([]);
+  useEffect(() => {
+    // Creamos una funcion asincrona 
+    const fetchData = async () => {
+      try{
+        // Peticion a la API
+        const res = await fetch("http;",
+          {
+            method: "GET",
+            headers : {"Content-Type": "application/json"}
+          }
+        )
+
+        // Convertimos la respuesta en formato JSON
+        const data =  reservaciones;
+        setReservacionesData(data);
+      } catch (err) {
+        console.error("Error: ", err);
+      }
+    }
+    fetchData();
+  })
   return (
     <div className='p-10 w-full place-content-center'>
       <h1 className='text-3xl'>Historial de reservas</h1>
@@ -51,7 +73,7 @@ const HistorialReservas = () => {
           <button type='submit' className='p-2 bg-teal-700 text-white'>Buscar</button>
         </form>
       </div>
-      <TablaReserva reservaciones={reservaciones} />
+      <TablaReserva reservaciones={reservacionesData} />
     </div>
   )
 }
