@@ -26,9 +26,19 @@ const FormularioNoche = () => {
     setTipoHabitacion(e.target.value);
   };
   const handleDiaEntrada = (e) => {
+    if(Date.now > e.target.value) {
+      alert("Fecha incorrecta, intentelo nuevamente");
+      setDiaEntrada("");
+      return
+    }
     setDiaEntrada(e.target.value);
   };
   const handleDiaSalida = (e) => {
+    if(Date.now > e.target.value) {
+      alert("Fecha incorrecta, intentelo nuevamente");
+      setDiaEntrada("");
+      return
+    }
     setDiaSalida(e.target.value);
   };
   const handleRecepcionista = (e) => {
@@ -40,6 +50,11 @@ const FormularioNoche = () => {
 
   const handelSubmit = async (e) => {
     e.preventDefault();
+
+    if(!nombre || !telefono || !noHabitacion || !tipoHabitacion || !diaEntrada || !diaSalida || !recepcionista || !total) {
+      alert("Todos los datos son obligatorios")
+      return
+    }
 
     try {
       const res = await fetch("http;//localhost:30", {

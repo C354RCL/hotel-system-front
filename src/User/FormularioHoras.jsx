@@ -20,6 +20,11 @@ const FormularioHoras = () => {
     setTipoHabitacion(e.target.value);
   };
   const handleDiaEntrada = (e) => {
+    if(Date.now > e.target.value) {
+      alert("Fecha incorrecta, intentelo nuevamente");
+      setDiaEntrada("");
+      return
+    }
     setDiaEntrada(e.target.value);
   };
   const handleHoraEntrada = (e) => {
@@ -41,6 +46,12 @@ const FormularioHoras = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
+    // Validacion si todos los campos estan completados
+    if(!noHabitacion || !tipoHabitacion || !diaEntrada || !horaEntrada || !horaSalida || !vehiculo || !recepcionista || !total) {
+      alert("Todos los campos son obligatorios");
+      return
+    }
+    
     try{
       // Creamos la peticion a la API 
       const res = await fetch("http://localhost:300", {
@@ -59,6 +70,8 @@ const FormularioHoras = () => {
       } else {
         alert("Ocurrio un error, intentelo nuevamente");
       }
+
+      return
     } catch (err) {
       console.error("Error: ", err);
     }
