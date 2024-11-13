@@ -14,16 +14,18 @@ function createWindow() {
     }
   });
 
-  //if (app.isPackaged) {
+  if (app.isPackaged) {
     // Cargar el archivo index.html desde la build en producción
     win.loadFile(path.join(__dirname, 'dist', 'index.html'));
+   
+    
+  } else {
+    // En desarrollo, cargar el servidor de Vite
+    win.loadURL('http://localhost:3000');
+    win.webContents.openDevTools();
     console.log('Cargando archivo en:', path.join(__dirname, 'dist', 'index.html'));  // Verifica la ruta
 
-    win.webContents.openDevTools();
-  //} else {
-    // En desarrollo, cargar el servidor de Vite
-    //win.loadURL('http://localhost:5173');
-  //}
+  }
 }
 
 app.whenReady().then(createWindow);

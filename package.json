@@ -9,7 +9,7 @@
     "start": "electron .",
     "lint": "eslint .",
     "preview": "vite preview",
-    "electron-dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
+    "electron-dev": "concurrently \"vite\" \"wait-on http://localhost:3000 && electron .\"",
     "electron-build": "electron-builder"
   },
   "main": "main.js",
