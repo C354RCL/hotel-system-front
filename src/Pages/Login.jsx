@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getDocuments } from '../../database/connectionManager';
-import { BSON } from 'mongodb';
 
 export function Login() {
   // Inicializamos las variables como cadenas vacias
