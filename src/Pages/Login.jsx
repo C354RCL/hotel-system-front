@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getDocuments } from '../../database/connectionManager';
+import { BSON } from 'mongodb';
 
 export function Login() {
   // Inicializamos las variables como cadenas vacias
@@ -27,6 +29,8 @@ export function Login() {
       localStorage.clear();
       // Guardamos userName en el localStorage
       localStorage.setItem("userName", userName);
+      const users = await getDocuments('users');
+      console.log(users);
       navigate("/admin/inicio");
     } catch (err) {
       console.error("Error: ", err)

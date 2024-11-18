@@ -15,7 +15,7 @@ async function getDocuments(collectionName){
         const collection = database.collection(collectionName); // Usamos el parametro para traer la coleccion a usar
         const lista = collection.find();
         let arreglo = []; // Creamos el arreglo donde se guardaran los datos que se extraigan
-        // Ciclo fot que itera sobre la lista y cada elemento lo agrega a arreglo
+        // Ciclo for que itera sobre la lista y cada elemento lo agrega a arreglo
         for await(const elemento of lista){
             arreglo.push(elemento);
         }
@@ -23,7 +23,7 @@ async function getDocuments(collectionName){
     } catch {
         console.log("Error en la consulta");
         client.close(); // Cerramos la coneccion del cliente
-        return null; // Retonamos null
+        return null; // Retornamos null
     } finally {
         client.close();
     }
