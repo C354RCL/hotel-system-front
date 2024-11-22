@@ -10,13 +10,11 @@ export function Login() {
   //Manjeador de eventos de userName
   const handleUserName = e => {
     setUserName(e.target.value);
-    console.log(e.target.value);
   }
 
   // Manejador de eventos de passwd
   const handlePasswd = e => {
     setPasswd(e.target.value);
-    console.log(e.target.value);
   }
 
   //Manejador de eventos de boton Iniciar Sesion
