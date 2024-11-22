@@ -15,44 +15,53 @@ const FormularioNoche = () => {
   //Manejadores de eventos
   const handleNombre = (e) => {
     setNombre(e.target.value);
-  };
+  }
+
   const handleTelefono = (e) => {
     setTelefono(e.target.value);
-  };
+  }
+
   const handleNoHabitacion = (e) => {
     setNoHabitacion(e.target.value);
-  };
+  }
+
   const handleTipoHabitacion = (e) => {
     setTipoHabitacion(e.target.value);
-  };
+  }
+
   const handleDiaEntrada = (e) => {
-    if(Date.now > e.target.value) {
-      alert("Fecha incorrecta, intentelo nuevamente");
-      setDiaEntrada("");
-      return
-    }
     setDiaEntrada(e.target.value);
-  };
+  }
+
   const handleDiaSalida = (e) => {
-    if(Date.now > e.target.value) {
+    if(diaEntrada > e.target.value) {
       alert("Fecha incorrecta, intentelo nuevamente");
       setDiaEntrada("");
       return
     }
     setDiaSalida(e.target.value);
-  };
+  }
+
   const handleRecepcionista = (e) => {
     setRecepcionista(e.target.value);
-  };
+  }
+
   const handleTotal = (e) => {
     setTotal(e.target.value);
-  };
+  }
 
   const handelSubmit = async (e) => {
     e.preventDefault();
 
+    // Validacion de que todos los campos esten completos
     if(!nombre || !telefono || !noHabitacion || !tipoHabitacion || !diaEntrada || !diaSalida || !recepcionista || !total) {
       alert("Todos los datos son obligatorios")
+      return
+    }
+
+    //Validacion de que el numero de telefono sea correcto
+    if(telefono.length != 10){
+      alert('Numero de telefono no valido, intentelo nuevamnete');
       return
     }
 
@@ -76,7 +85,20 @@ const FormularioNoche = () => {
     } catch (err) {
       console.error("Error: ", err);
     }
-  };
+  }
+
+  const handleReset = async e => {
+    e.preventDefault();
+    setNombre('');  
+    setTelefono('');      
+    setNoHabitacion('');
+    setTipoHabitacion('');
+    setDiaEntrada('');
+    setDiaSalida('');
+    setRecepcionista('');
+    setTotal('');
+  }
+  
   return (
     <div className="p-10 w-full place-content-center">
       <h1 className="text-3xl text-center">Servicio por Noches</h1>
@@ -190,7 +212,8 @@ const FormularioNoche = () => {
         </FormRow>
         <FormRow>
           <button
-            type="reset"
+            type="button"
+            onClick={handleReset}
             className="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 m-6 rounded-lg"
           >
             Borrar
