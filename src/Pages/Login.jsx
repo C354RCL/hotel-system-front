@@ -24,12 +24,37 @@ export function Login() {
     e.preventDefault();
 
     try{
+      // Validacion de que los campos esten completos
+      if(userName === '' || passwd === '') {
+        alert('Se requiere llenar todos los campos');
+        return;
+      }
+
+      // Limpiamos el localStorage
       localStorage.clear();
       // Guardamos userName en el localStorage
       localStorage.setItem("userName", userName);
-      const users = await getDocuments('users');
-      console.log(users);
-      navigate("/admin/inicio");
+      const res = await fetch("url", {
+        method : 'POST',
+        headers : {"Content-Type" : "application/json"},
+        body : JSON.stringify({userName, passwd})
+      });
+      // Guardamos userName en localStorage
+      localStorage.setItem("userName", userName);
+      // La respuesta del servidor la convertimos a formato JSON 
+      // const data = await res.json();
+      const data = {code:200, position:'Recepcionista'}
+
+      if (data.code === 200 && data.position == 'Admin'){
+        navigate("/nuevo");
+        return
+      } else if (data.code === 200 && data.position == 'Recepcionista') {
+        navigate("/admin/inicio");
+        return
+      } else {
+        alert('Usuario y/o contraseña incorrecta');
+        return
+      }
     } catch (err) {
       console.error("Error: ", err)
     }
