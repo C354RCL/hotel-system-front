@@ -14,35 +14,41 @@ const FormularioHoras = () => {
 
   //Manejadores de eventos
   const handleNoHabitacion = (e) => {
+    if(e.target.value > 18){
+      alert('Número de habitación incorrecto');
+      return;
+    }
     setnoHabitacion(e.target.value);
-  };
+  }
+
   const handletipoHabitacion = (e) => {
     setTipoHabitacion(e.target.value);
-  };
+  }
+
   const handleDiaEntrada = (e) => {
-    if(Date.now > e.target.value) {
-      alert("Fecha incorrecta, intentelo nuevamente");
-      setDiaEntrada("");
-      return
-    }
     setDiaEntrada(e.target.value);
-  };
+  }
+
   const handleHoraEntrada = (e) => {
     setHoraEntrada(e.target.value);
-  };
+  }
+
   const handleHoraSalida = (e) => {
     setHoraSalida(e.target.value);
-  };
+  }
+
   const handlVehiculo = (e) => {
     setVehiculo(e.target.value);
-  };
+  }
+
   const handleRecepcionista = (e) => {
     setRecepcionista(e.target.value);
-  };
+  }
+
   const handleTotal = (e) => {
     setTotal(e.target.value);
-  };
-
+  }
+  
   const handleSubmit = async e => {
     e.preventDefault();
 
@@ -75,6 +81,18 @@ const FormularioHoras = () => {
     } catch (err) {
       console.error("Error: ", err);
     }
+  }
+
+  const handleReset = async e => {
+    e.preventDefault();
+    setnoHabitacion('');
+    setTipoHabitacion('');
+    setDiaEntrada('');
+    setHoraEntrada('');
+    setHoraSalida('');
+    setVehiculo('');
+    setRecepcionista('');
+    setTotal('');
   }
 
   return (
@@ -190,7 +208,8 @@ const FormularioHoras = () => {
         </FormRow>
         <FormRow>
           <button
-            type="reset"
+            type="button"
+            onClick={handleReset}
             className="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 m-6 rounded-lg"
           >
             Borrar
