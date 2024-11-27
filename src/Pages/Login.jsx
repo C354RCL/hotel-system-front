@@ -32,21 +32,23 @@ export function Login() {
       localStorage.clear();
       // Guardamos userName en el localStorage
       localStorage.setItem("userName", userName);
-      const res = await fetch("url", {
+      //Cambio los nombres para que hagan match con los campos de la base de datos
+      const user = userName;
+      const password = passwd;
+      const res = await fetch('http://localhost:9292/find/users', {
         method : 'POST',
+        mode : "cors",
         headers : {"Content-Type" : "application/json"},
-        body : JSON.stringify({userName, passwd})
+        //Se hace el JSON que tenga la misma forma que en la base de datos con las variables iguales a los nombres
+        body : JSON.stringify({user, password})
       });
-      // Guardamos userName en localStorage
-      localStorage.setItem("userName", userName);
-      // La respuesta del servidor la convertimos a formato JSON 
-      // const data = await res.json();
-      const data = {code:200, position:'Recepcionista'}
+      const data = await res.json();
+      const userData = await data[0];
 
-      if (data.code === 200 && data.position == 'Admin'){
+      if (await userData.position == 'Admin'){
         navigate("/nuevo");
         return
-      } else if (data.code === 200 && data.position == 'Recepcionista') {
+      } else if (await userData.position === 'Recepcionista') {
         navigate("/admin/inicio");
         return
       } else {
