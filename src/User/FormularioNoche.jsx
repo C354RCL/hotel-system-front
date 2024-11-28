@@ -3,14 +3,14 @@ import FormRow from "./FormRow.jsx";
 
 const FormularioNoche = () => {
   // Se inicializan las varaivbles como cadenas vacias
-  const [nombre, setNombre] = useState("");
-  const [telefono, setTelefono] = useState("");
+  const [cutomerName, setNombre] = useState("");
+  const [telephoneNumber, setTelefono] = useState("");
+  const [arriveDay, setDiaEntrada] = useState("");
+  const [departureDay, setDiaSalida] = useState("");
+  const [totalCost, setTotal] = useState("");
   const [noHabitacion, setNoHabitacion] = useState("");
   const [tipoHabitacion, setTipoHabitacion] = useState("");
-  const [diaEntrada, setDiaEntrada] = useState("");
-  const [diaSalida, setDiaSalida] = useState("");
   const [recepcionista, setRecepcionista] = useState("");
-  const [total, setTotal] = useState("");
 
   //Manejadores de eventos
   const handleNombre = (e) => {
@@ -34,7 +34,7 @@ const FormularioNoche = () => {
   }
 
   const handleDiaSalida = (e) => {
-    if(diaEntrada > e.target.value) {
+    if(arriveDay > e.target.value) {
       alert("Fecha incorrecta, intentelo nuevamente");
       setDiaEntrada("");
       return
@@ -54,28 +54,27 @@ const FormularioNoche = () => {
     e.preventDefault();
 
     // Validacion de que todos los campos esten completos
-    if(!nombre || !telefono || !noHabitacion || !tipoHabitacion || !diaEntrada || !diaSalida || !recepcionista || !total) {
+    if(!cutomerName || !telephoneNumber || !noHabitacion || !tipoHabitacion || !arriveDay || !departureDay || !recepcionista || !totalCost) {
       alert("Todos los datos son obligatorios")
       return
     }
 
     //Validacion de que el numero de telefono sea correcto
-    if(telefono.length != 10){
+    if(telephoneNumber.length != 10){
       alert('Numero de telefono no valido, intentelo nuevamnete');
       return
     }
-
+    const idRoom = '6722a733aab354ab12f660b5'
+    const idUser = '67228ab60304d0ce1c51fbe4'
     try {
-      const res = await fetch("http;//localhost:30", {
+      const res = await fetch("http://localhost:9292/insert/reservationNights", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({nombre, telefono, noHabitacion, tipoHabitacion, diaEntrada, diaSalida, recepcionista, total})
+        body: JSON.stringify({cutomerName, telephoneNumber, arriveDay, departureDay, totalCost, idRoom, idUser})
       });
 
-      console.log(JSON.stringify({nombre, telefono, noHabitacion, tipoHabitacion, diaEntrada, diaSalida, recepcionista, total}));
-
       //La respuesta del servidor la convertimos a JSON
-      const data = {code : 300};
+      const data = await res.json();
 
       if(data.code === 200){
         alert("Servicio registrado correctamente")
@@ -111,7 +110,7 @@ const FormularioNoche = () => {
             <input
               type="text"
               id="nombre"
-              value={nombre}
+              value={cutomerName}
               onChange={handleNombre}
               className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
             />
@@ -123,7 +122,7 @@ const FormularioNoche = () => {
             <input
               type="text"
               id="telefono"
-              value={telefono}
+              value={telephoneNumber}
               onChange={handleTelefono}
               className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
             />
@@ -166,7 +165,7 @@ const FormularioNoche = () => {
             <input
               type="date"
               id="diaDeEntrada"
-              value={diaEntrada}
+              value={arriveDay}
               onChange={handleDiaEntrada}
               className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
             />
@@ -178,7 +177,7 @@ const FormularioNoche = () => {
             <input
               type="date"
               id="diaDeSalida"
-              value={diaSalida}
+              value={departureDay}
               onChange={handleDiaSalida}
               className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
             />
@@ -204,7 +203,7 @@ const FormularioNoche = () => {
             <input
               type="number"
               id="total"
-              value={total}
+              value={totalCost}
               onChange={handleTotal}
               className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
             />

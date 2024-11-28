@@ -3,16 +3,16 @@ import { useNavigate } from 'react-router-dom';
 
 export function Login() {
   // Inicializamos las variables como cadenas vacias
-  const [userName, setUserName] = useState("");
-  const [passwd, setPasswd] = useState("");
+  const [user, setUserName] = useState("");
+  const [password, setPasswd] = useState("");
   const navigate = useNavigate();
   
-  //Manjeador de eventos de userName
+  //Manjeador de eventos de user
   const handleUserName = e => {
     setUserName(e.target.value);
   }
 
-  // Manejador de eventos de passwd
+  // Manejador de eventos de password
   const handlePasswd = e => {
     setPasswd(e.target.value);
   }
@@ -23,18 +23,16 @@ export function Login() {
 
     try{
       // Validacion de que los campos esten completos
-      if(userName === '' || passwd === '') {
+      if(user === '' || password === '') {
         alert('Se requiere llenar todos los campos');
         return;
       }
 
       // Limpiamos el localStorage
       localStorage.clear();
-      // Guardamos userName en el localStorage
-      localStorage.setItem("userName", userName);
+      // Guardamos user en el localStorage
+      localStorage.setItem("user", user);
       //Cambio los nombres para que hagan match con los campos de la base de datos
-      const user = userName;
-      const password = passwd;
       const res = await fetch('http://localhost:9292/find/users', {
         method : 'POST',
         mode : "cors",
@@ -43,7 +41,9 @@ export function Login() {
         body : JSON.stringify({user, password})
       });
       const data = await res.json();
+      console.log(data);
       const userData = await data[0];
+      console.log(userData)
 
       if (await userData.position == 'Admin'){
         navigate("/nuevo");
@@ -51,7 +51,7 @@ export function Login() {
       } else if (await userData.position === 'Recepcionista') {
         navigate("/admin/inicio");
         return
-      } else {
+      } else if (await data.code === '404'){
         alert('Usuario y/o contraseña incorrecta');
         return
       }
@@ -94,7 +94,7 @@ export function Login() {
                 id="username"
                 name="username"
                 placeholder="Usuario"
-                value = {userName}
+                value = {user}
                 onChange={handleUserName}
                 className="w-full py-2 px-4 border border-gray-200 shadow-sm dark:text-slate-900 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-70 focus:bg-gray-100"
               />
@@ -109,7 +109,7 @@ export function Login() {
                 id="password"
                 name="password"
                 placeholder="******"
-                value= {passwd}
+                value= {password}
                 onChange={handlePasswd}
                 className="w-full py-2 px-4 border border-gray-200 shadow-sm dark:text-slate-900 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-70 focus:bg-gray-100"
               />
