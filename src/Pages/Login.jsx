@@ -43,6 +43,9 @@ export function Login() {
       const data = await res.json();
       console.log('Data',data.code);
       const userData = await data[0];
+      const idUser = userData._id;
+      localStorage.setItem('id', idUser);
+
 
       if(await data.code == 404){
         alert('Usuario y/o contraseña incorrecta');
