@@ -5,12 +5,12 @@ const FormularioHoras = () => {
   // Se inicializan variables como cadenas vacias
   const [noHabitacion, setnoHabitacion] = useState("");
   const [tipoHabitacion, setTipoHabitacion] = useState("");
-  const [diaEntrada, setDiaEntrada] = useState("");
-  const [horaEntrada, setHoraEntrada] = useState("");
-  const [horaSalida, setHoraSalida] = useState("");
-  const [vehiculo, setVehiculo] = useState("");
+  const [date, setDiaEntrada] = useState("");
+  const [enterHour, setHoraEntrada] = useState("");
+  const [exitHour, setHoraSalida] = useState("");
+  const [vehicle, setVehiculo] = useState("");
   const [recepcionista, setRecepcionista] = useState("");
-  const [total, setTotal] = useState("");
+  const [totalCost, setTotal] = useState("");
 
   //Manejadores de eventos
   const handleNoHabitacion = (e) => {
@@ -53,20 +53,25 @@ const FormularioHoras = () => {
     e.preventDefault();
 
     // Validacion si todos los campos estan completados
-    if(!noHabitacion || !tipoHabitacion || !diaEntrada || !horaEntrada || !horaSalida || !vehiculo || !recepcionista || !total) {
+    if(!noHabitacion || !tipoHabitacion || !date || !enterHour || !exitHour || !vehicle || !recepcionista || !totalCost) {
       alert("Todos los campos son obligatorios");
       return
     }
     
     try{
       // Creamos la peticion a la API 
-      const res = await fetch("http://localhost:300", {
+      const idUsers = await fetch('http;//localhost:9292/find/users', {
+        method : 'POST',
+        headers : {"Content-Type" : "application/json"}
+      });
+
+      const res = await fetch("http://localhost:9292/insert/reservationHpurs", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         // Convertimos a JSON los valores 
-        body: JSON.stringify({noHabitacion, tipoHabitacion, diaEntrada, horaEntrada, horaSalida, vehiculo, recepcionista, total})
+        body: JSON.stringify({noHabitacion, tipoHabitacion, date, enterHour, exitHour, vehicle, recepcionista, totalCost})
       })
-      console.log(JSON.stringify({noHabitacion, tipoHabitacion, diaEntrada, horaEntrada, horaSalida, vehiculo, recepcionista, total}));
+      console.log(JSON.stringify({noHabitacion, tipoHabitacion, date, enterHour, exitHour, vehicle, recepcionista, totalCost}));
 
       // La respuesta del servidor la convertimos a JSON 
       const data = await res.json();
@@ -137,7 +142,7 @@ const FormularioHoras = () => {
               type="date"
               id="diaDeEntrada"
               className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
-              value={diaEntrada}
+              value={date}
               onChange={handleDiaEntrada}
             />
           </div>
@@ -149,7 +154,7 @@ const FormularioHoras = () => {
               type="time"
               id="horaDeEntrada"
               className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
-              value={horaEntrada}
+              value={enterHour}
               onChange={handleHoraEntrada}
             />
           </div>
@@ -163,7 +168,7 @@ const FormularioHoras = () => {
               type="time"
               id="horaDeSalida"
               className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
-              value={horaSalida}
+              value={exitHour}
               onChange={handleHoraSalida}
             />
           </div>
@@ -175,7 +180,7 @@ const FormularioHoras = () => {
               type="text"
               id="vehiculo"
               className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
-              value={vehiculo}
+              value={vehicle}
               onChange={handlVehiculo}
             />
           </div>
@@ -201,7 +206,7 @@ const FormularioHoras = () => {
               type="number"
               id="total"
               className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
-              value={total}
+              value={totalCost}
               onChange={handleTotal}
             />
           </div>
