@@ -75,6 +75,7 @@ const FormularioNoche = () => {
 
       //La respuesta del servidor la convertimos a JSON
       const data = await res.json();
+      console.log(res.status)
 
       if(data.code === 200){
         alert("Servicio registrado correctamente")

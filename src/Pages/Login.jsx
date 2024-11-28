@@ -41,20 +41,19 @@ export function Login() {
         body : JSON.stringify({user, password})
       });
       const data = await res.json();
-      console.log(data);
+      console.log('Data',data.code);
       const userData = await data[0];
-      console.log(userData)
 
-      if (await userData.position == 'Admin'){
+      if(await data.code == 404){
+        alert('Usuario y/o contraseña incorrecta');
+        return
+      }  else if (await userData.position == 'Admin'){
         navigate("/nuevo");
         return
       } else if (await userData.position === 'Recepcionista') {
         navigate("/admin/inicio");
         return
-      } else if (await data.code === '404'){
-        alert('Usuario y/o contraseña incorrecta');
-        return
-      }
+      } 
     } catch (err) {
       console.error("Error: ", err)
     }
