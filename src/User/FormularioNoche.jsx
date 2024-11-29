@@ -55,6 +55,7 @@ const FormularioNoche = () => {
     let idRoom;
     let totalCost;
     let roomType;
+    let roomNumber;
     let firstName;
 
     try{
@@ -89,6 +90,7 @@ const FormularioNoche = () => {
       idRoom = roomData._id;
       totalCost = roomData.cost;
       roomType = roomData.roomType;
+      roomNumber = roomData.roomNumber;
     } catch (err) {
       console.log("Error en POST de habitacion", err);
     }
@@ -99,7 +101,7 @@ const FormularioNoche = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         // Convertimos a JSON los valores
-        body: JSON.stringify({cutomerName, telephoneNumber, arriveDay, departureDay, totalCost, idRoom, idUser, roomType, firstName})
+        body: JSON.stringify({cutomerName, telephoneNumber, arriveDay, departureDay, totalCost, idRoom, idUser, roomType, firstName, roomNumber})
       });
 
       // Verificmaos la respuesta del servidor
