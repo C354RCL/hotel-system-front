@@ -169,11 +169,7 @@ const FormularioNoche = () => {
             />
           </div>
           <div className="flex flex-col w-1/3">
-          </div>
-        </FormRow>
-        <FormRow>
-          <div className="flex flex-col w-1/3">
-            <label htmlFor="diaDeEntrada" className="px-5">
+          <label htmlFor="diaDeEntrada" className="px-5">
               Dia de entrada
             </label>
             <input
@@ -184,8 +180,10 @@ const FormularioNoche = () => {
               className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
             />
           </div>
+        </FormRow>
+        <FormRow>
           <div className="flex flex-col w-1/3">
-            <label htmlFor="diaDeSalida" className="px-5">
+          <label htmlFor="diaDeSalida" className="px-5">
               Dia de salida
             </label>
             <input
@@ -195,12 +193,6 @@ const FormularioNoche = () => {
               onChange={handleDiaSalida}
               className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
             />
-          </div>
-        </FormRow>
-        <FormRow>
-          <div className="flex flex-col w-1/3">
-          </div>
-          <div className="flex flex-col w-1/3">
           </div>
         </FormRow>
         <FormRow>

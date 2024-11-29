@@ -133,11 +133,7 @@ const FormularioHoras = () => {
             />
           </div>
           <div className="flex flex-col w-1/3">
-          </div>
-        </FormRow>
-        <FormRow>
-          <div className="flex flex-col w-1/3">
-            <label htmlFor="diaDeEntrada" className="px-5">
+          <label htmlFor="diaDeEntrada" className="px-5">
               Dia de entrada
             </label>
             <input
@@ -148,8 +144,10 @@ const FormularioHoras = () => {
               onChange={handleDiaEntrada}
             />
           </div>
+        </FormRow>
+        <FormRow>
           <div className="flex flex-col w-1/3">
-            <label htmlFor="horaDeEntrada" className="px-5">
+          <label htmlFor="horaDeEntrada" className="px-5">
               Hora de entrada
             </label>
             <input
@@ -160,10 +158,8 @@ const FormularioHoras = () => {
               onChange={handleHoraEntrada}
             />
           </div>
-        </FormRow>
-        <FormRow>
           <div className="flex flex-col w-1/3">
-            <label htmlFor="horaDeSalida" className="px-5">
+          <label htmlFor="horaDeSalida" className="px-5">
               Hora de salida
             </label>
             <input
@@ -174,6 +170,8 @@ const FormularioHoras = () => {
               onChange={handleHoraSalida}
             />
           </div>
+        </FormRow>
+        <FormRow>
           <div className="flex flex-col w-1/3">
             <label htmlFor="vehiculo" className="px-5">
               Vehiculo
@@ -185,13 +183,6 @@ const FormularioHoras = () => {
               value={vehicle}
               onChange={handlVehiculo}
             />
-          </div>
-        </FormRow>
-        <FormRow>
-          <div className="flex flex-col w-1/3">
-            
-          </div>
-          <div className="flex flex-col w-1/3">
           </div>
         </FormRow>
         <FormRow>

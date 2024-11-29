@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 function TablaClientesReserva({ reservaciones = [] }) {
   return (
     <div className='p-10 w-full place-content-center'>
-      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <table className="w-full text-gray-500 dark:text-gray-400">
         <thead className='text-xs text-teal-700 uppercase bg-emerald-50 dark:bg-teal-700 dark:text-emerald-50'>
           <tr>
             <th scope='col' className='px-6 py-3'>Nombre Cliente</th>
@@ -17,14 +17,14 @@ function TablaClientesReserva({ reservaciones = [] }) {
         </thead>
         <tbody>
           {reservaciones.map((reservacion, index) => (
-            <tr key={index} className='bg-white border-b dark:bg-gray-800 dark:border-gray-700'>
-              <td>{reservacion.nombreCliente}</td>
-              <td>{reservacion.numTelefono}</td>
-              <td>{reservacion.habitacion}</td>
-              <td>{reservacion.diaLlegada}</td>
-              <td>{reservacion.diaSalida}</td>
-              <td>{reservacion.recepcionista}</td>
-              <td>{reservacion.total}</td>
+            <tr key={index} className='text-center bg-white border-b dark:bg-gray-800 dark:border-gray-700'>
+              <td >{reservacion.nombreCliente}</td>
+              <td >{reservacion.numTelefono}</td>
+              <td >{reservacion.habitacion}</td>
+              <td >{reservacion.diaLlegada}</td>
+              <td >{reservacion.diaSalida}</td>
+              <td >{reservacion.recepcionista}</td>
+              <td >{reservacion.total}</td>
             </tr>
           ))}
         </tbody>

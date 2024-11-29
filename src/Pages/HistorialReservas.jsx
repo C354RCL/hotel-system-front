@@ -39,6 +39,12 @@ const HistorialReservas = () => {
             <option value='Doble' className='dark:bg-teal-700'>Doble</option>
           </select>
           <button type='submit' className='p-2 bg-teal-700 text-white'>Buscar</button>
+          <button
+            type="button"
+            className="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 m-6 "
+          >
+            Borrar filtros
+          </button>
         </form>
       </div>
       <TablaReserva reservaciones={reservacionesData} />

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const TablaReserva = ({ reservaciones = [] }) => {
   return (
     <div className='p-10 w-full place-content-center'>
-      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
         <thead className='text-xs text-teal-700 uppercase bg-emerald-50 dark:bg-teal-700 dark:text-emerald-50'>
           <tr>
             <th scope='col' className='px-6 py-3'>No. Habitacion</th>
@@ -18,7 +18,7 @@ const TablaReserva = ({ reservaciones = [] }) => {
         </thead>
         <tbody>
           {reservaciones.map((reservacion, index) => (
-            <tr key={index} className='bg-white border-b dark:bg-gray-800 dark:border-gray-700'>
+            <tr key={index} className='text-centerbg-white border-b dark:bg-gray-800 dark:border-gray-700'>
               <td>{reservacion.roomNumber}</td>
               <td>{reservacion.roomType}</td>
               <td>{reservacion.date}</td>
