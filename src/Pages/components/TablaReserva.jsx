@@ -19,12 +19,12 @@ const TablaReserva = ({ reservaciones = [] }) => {
         <tbody>
           {reservaciones.map((reservacion, index) => (
             <tr key={index} className='bg-white border-b dark:bg-gray-800 dark:border-gray-700'>
-              <td>{reservacion.idRoom}</td>
+              <td>{reservacion.roomNumber}</td>
               <td>{reservacion.roomType}</td>
               <td>{reservacion.date}</td>
               <td>{reservacion.enterHour}</td>
               <td>{reservacion.exitHour}</td>
-              <td>{reservacion.idUser}</td>
+              <td>{reservacion.firstName}</td>
               <td>{reservacion.totalCost}</td>
             </tr>
           ))}

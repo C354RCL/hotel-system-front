@@ -14,7 +14,6 @@ const HistorialReservas = () => {
         });
     
         const data = await res.json();
-        console.log('Datos obtenidos:', data);
         setReservacionesData(data);
       } catch (err) {
         console.error('Error al obtener los datos:', err.message);
