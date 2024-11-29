@@ -54,6 +54,7 @@ const FormularioNoche = () => {
     // Declaramos las variables donde se guarda infromacion de la habitacion
     let idRoom;
     let totalCost;
+    let roomType;
 
     try{
       // Convertimos a tipo JSON ell numero de habitacion 
@@ -70,6 +71,7 @@ const FormularioNoche = () => {
       const roomData = await data[0];
       idRoom = roomData._id;
       totalCost = roomData.cost;
+      roomType = roomData.roomType;
     } catch (err) {
       console.log("Error en POST de habitacion", err);
     }
@@ -80,7 +82,7 @@ const FormularioNoche = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         // Convertimos a JSON los valores
-        body: JSON.stringify({cutomerName, telephoneNumber, arriveDay, departureDay, totalCost, idRoom, idUser})
+        body: JSON.stringify({cutomerName, telephoneNumber, arriveDay, departureDay, totalCost, idRoom, idUser, roomType})
       });
 
       // Verificmaos la respuesta del servidor
