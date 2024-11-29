@@ -55,7 +55,6 @@ const FormularioNoche = () => {
     let idRoom;
     let totalCost;
     let roomType;
-    let roomNumber;
     let firstName;
 
     try{
@@ -90,12 +89,13 @@ const FormularioNoche = () => {
       idRoom = roomData._id;
       totalCost = roomData.cost;
       roomType = roomData.roomType;
-      roomNumber = roomData.roomNumber;
     } catch (err) {
       console.log("Error en POST de habitacion", err);
     }
 
     try {
+      roomNumber = roomNumber.roomNumber;
+      console.log(roomNumber)
       // Creamos la peticion a la API
       const res = await fetch("http://localhost:9292/insert/reservationNights", {
         method: "POST",

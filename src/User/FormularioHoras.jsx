@@ -48,7 +48,6 @@ const FormularioHoras = () => {
     let idRoom;
     let totalCost;
     let roomType;
-    let roomNumber;
     let firstName;
 
     try{
@@ -82,12 +81,12 @@ const FormularioHoras = () => {
       idRoom = roomData._id;
       totalCost = roomData.cost;
       roomType = roomData.roomType;
-      roomNumber = roomData.roomNumber;
     } catch (err) {
       console.error("Error en POST de habitacion", err);
     }
     
     try{
+      roomNumber = roomNumber.roomNumber;
       // Creamos la peticion a la API 
       const res = await fetch("http://localhost:9292/insert/reservationHours", {
         method: "POST",
