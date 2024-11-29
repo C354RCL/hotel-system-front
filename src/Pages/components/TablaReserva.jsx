@@ -9,7 +9,7 @@ const TablaReserva = ({ reservaciones = [] }) => {
           <tr>
             <th scope='col' className='px-6 py-3'>No. Habitacion</th>
             <th scope='col' className='px-6 py-3'>Tipo de Habitacion</th>
-            <th scope='col' className='px-6 py-3'>Fecha de Reserva</th>
+            <th scope='col' className='px-6 py-3'>Fecha</th>
             <th scope='col' className='px-6 py-3'>Hora de Entrada</th>
             <th scope='col' className='px-6 py-3'>Hora de Salida</th>
             <th scope='col' className='px-6 py-3'>Recepcionista</th>
@@ -19,13 +19,13 @@ const TablaReserva = ({ reservaciones = [] }) => {
         <tbody>
           {reservaciones.map((reservacion, index) => (
             <tr key={index} className='bg-white border-b dark:bg-gray-800 dark:border-gray-700'>
-              <td>{reservacion.noHabitacion}</td>
-              <td>{reservacion.tipoHabitacion}</td>
-              <td>{reservacion.fechaReserva}</td>
-              <td>{reservacion.horaEntrada}</td>
-              <td>{reservacion.horaSalida}</td>
-              <td>{reservacion.recepcionista}</td>
-              <td>{reservacion.precio}</td>
+              <td>{reservacion.idRoom}</td>
+              <td>{reservacion.roomType}</td>
+              <td>{reservacion.date}</td>
+              <td>{reservacion.enterHour}</td>
+              <td>{reservacion.exitHour}</td>
+              <td>{reservacion.idUser}</td>
+              <td>{reservacion.totalCost}</td>
             </tr>
           ))}
         </tbody>
@@ -37,13 +37,13 @@ const TablaReserva = ({ reservaciones = [] }) => {
 TablaReserva.propTypes = {
   reservaciones: PropTypes.arrayOf(
     PropTypes.shape({
-      noHabitacion: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-      tipoHabitacion: PropTypes.string.isRequired,
-      fechaReserva: PropTypes.string.isRequired,
-      horaEntrada: PropTypes.string.isRequired,
-      horaSalida: PropTypes.string.isRequired,
-      recepcionista: PropTypes.string.isRequired,
-      precio: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      idRoom: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      roomType: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      enterHour: PropTypes.string.isRequired,
+      exitHour: PropTypes.string.isRequired,
+      idUser: PropTypes.string.isRequired,
+      totalCost: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     })
   ),
 };
