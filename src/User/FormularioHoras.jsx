@@ -3,26 +3,20 @@ import FormRow from "./FormRow.jsx";
 
 const FormularioHoras = () => {
   // Se inicializan variables como cadenas vacias
-  const [noHabitacion, setnoHabitacion] = useState("");
-  const [tipoHabitacion, setTipoHabitacion] = useState("");
+  let [roomNumber, setnoHabitacion] = useState("");
   const [date, setDiaEntrada] = useState("");
   const [enterHour, setHoraEntrada] = useState("");
   const [exitHour, setHoraSalida] = useState("");
   const [vehicle, setVehiculo] = useState("");
-  const [recepcionista, setRecepcionista] = useState("");
-  const [totalCost, setTotal] = useState("");
+  const idUser = localStorage.getItem('id')
 
   //Manejadores de eventos
-  const handleNoHabitacion = (e) => {
+  const handleNoHabitacion = async (e) => {
     if(e.target.value > 18){
       alert('Número de habitación incorrecto');
       return;
     }
     setnoHabitacion(e.target.value);
-  }
-
-  const handletipoHabitacion = (e) => {
-    setTipoHabitacion(e.target.value);
   }
 
   const handleDiaEntrada = (e) => {
@@ -40,48 +34,53 @@ const FormularioHoras = () => {
   const handlVehiculo = (e) => {
     setVehiculo(e.target.value);
   }
-
-  const handleRecepcionista = (e) => {
-    setRecepcionista(e.target.value);
-  }
-
-  const handleTotal = (e) => {
-    setTotal(e.target.value);
-  }
   
   const handleSubmit = async e => {
     e.preventDefault();
 
     // Validacion si todos los campos estan completados
-    if(!noHabitacion || !tipoHabitacion || !date || !enterHour || !exitHour || !vehicle || !recepcionista || !totalCost) {
+    if(!roomNumber || !date || !enterHour || !exitHour || !vehicle) {
       alert("Todos los campos son obligatorios");
       return
+    }
+
+    // Declaramos las varaibles donde se guarda infromacion de la habitacion 
+    let idRoom;
+    let totalCost;
+
+    try {
+      //Convertimos a tipo JSON el numero de habitacion
+      roomNumber = {roomNumber : roomNumber};
+      const resRoom = await fetch('http://localhost:9292/find/rooms',{
+        method : 'POST',
+        headers : {"Content-Type" : "application/json"},
+        body : JSON.stringify(roomNumber)
+      });
+      // Convertimos a JSON la respuesta 
+      const data = await resRoom.json();
+      // Obtenemos la informacion de la habitacion y las asignamos a las variables
+      const roomData = await data[0];
+      idRoom = roomData._id;
+      totalCost = roomData.cost;
+    } catch (err) {
+      console.error("Error en POST de habitacion", err);
     }
     
     try{
       // Creamos la peticion a la API 
-      const idUsers = await fetch('http;//localhost:9292/find/users', {
-        method : 'POST',
-        headers : {"Content-Type" : "application/json"}
-      });
-
-      const res = await fetch("http://localhost:9292/insert/reservationHpurs", {
+      const res = await fetch("http://localhost:9292/insert/reservationHours", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         // Convertimos a JSON los valores 
-        body: JSON.stringify({noHabitacion, tipoHabitacion, date, enterHour, exitHour, vehicle, recepcionista, totalCost})
+        body: JSON.stringify({enterHour, exitHour, vehicle, totalCost, idRoom, idUser, date})
       })
-      console.log(JSON.stringify({noHabitacion, tipoHabitacion, date, enterHour, exitHour, vehicle, recepcionista, totalCost}));
 
-      // La respuesta del servidor la convertimos a JSON 
-      const data = await res.json();
-
-      if(data.code === 200){
+      // Verificacion de la repuesta del servidor
+      if(await res.status == 201){
         alert("Servicio registrado correctamente")
       } else {
         alert("Ocurrio un error, intentelo nuevamente");
       }
-
       return
     } catch (err) {
       console.error("Error: ", err);
@@ -91,13 +90,9 @@ const FormularioHoras = () => {
   const handleReset = async e => {
     e.preventDefault();
     setnoHabitacion('');
-    setTipoHabitacion('');
     setDiaEntrada('');
     setHoraEntrada('');
     setHoraSalida('');
-    setVehiculo('');
-    setRecepcionista('');
-    setTotal('');
   }
 
   return (
@@ -113,24 +108,11 @@ const FormularioHoras = () => {
               type="text"
               id="noHabitacion"
               className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
-              value={noHabitacion}
+              value={roomNumber}
               onChange={handleNoHabitacion}
             />
           </div>
           <div className="flex flex-col w-1/3">
-            <label htmlFor="tipoDeHabitacion" className="px-5">
-              Tipo de habitación
-            </label>
-            <select
-              id="tipoDeHabitacion"
-              className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
-              value={tipoHabitacion}
-              onChange={handletipoHabitacion}
-            >
-              <option value="Matrimonial">Matrimonial</option>
-              <option value="King Size">King Size</option>
-              <option value="Doble">Doble</option>
-            </select>
           </div>
         </FormRow>
         <FormRow>
@@ -187,28 +169,9 @@ const FormularioHoras = () => {
         </FormRow>
         <FormRow>
           <div className="flex flex-col w-1/3">
-            <label htmlFor="recepcionista" className="px-5">
-              Recepcionista
-            </label>
-            <input
-              type="text"
-              id="recepcionista"
-              className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
-              value={recepcionista}
-              onChange={handleRecepcionista}
-            />
+            
           </div>
           <div className="flex flex-col w-1/3">
-            <label htmlFor="total" className="px-5">
-              Total
-            </label>
-            <input
-              type="number"
-              id="total"
-              className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
-              value={totalCost}
-              onChange={handleTotal}
-            />
           </div>
         </FormRow>
         <FormRow>
