@@ -8,7 +8,7 @@ const FormularioHoras = () => {
   const [enterHour, setHoraEntrada] = useState("");
   const [exitHour, setHoraSalida] = useState("");
   const [vehicle, setVehiculo] = useState("");
-  const idUser = localStorage.getItem('id')
+  const idUser = localStorage.getItem('id');
 
   //Manejadores de eventos
   const handleNoHabitacion = async (e) => {
@@ -48,6 +48,23 @@ const FormularioHoras = () => {
     let idRoom;
     let totalCost;
     let roomType;
+    let firstName;
+
+    try{
+      //Convertimos a tipo JSON el id del usuario
+      const userId ={idUser : idUser}
+      const resUser = await fetch('http://localhost:9292/find/users', {
+        method : 'POST',
+        headers : {'Content-Type' : 'applicatiom/json'},
+        body : JSON.stringify(userId)
+      });
+      // Convertimos a JSON la respuesta
+      const data = await resUser.json();
+      const userData = await data[0];
+      firstName = userData.firstName;
+    } catch(err) {
+      console.error(err);
+    }
 
     try {
       //Convertimos a tipo JSON el numero de habitacion
@@ -74,7 +91,7 @@ const FormularioHoras = () => {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         // Convertimos a JSON los valores 
-        body: JSON.stringify({enterHour, exitHour, vehicle, totalCost, idRoom, idUser, date, roomType})
+        body: JSON.stringify({enterHour, exitHour, vehicle, totalCost, idRoom, idUser, date, roomType, firstName})
       })
 
       // Verificacion de la repuesta del servidor

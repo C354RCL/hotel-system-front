@@ -55,6 +55,23 @@ const FormularioNoche = () => {
     let idRoom;
     let totalCost;
     let roomType;
+    let firstName;
+
+    try{
+      //Convertimos a tipo JSON el id del usuario
+      const userId ={idUser : idUser}
+      const resUser = await fetch('http://localhost:9292/find/users', {
+        method : 'POST',
+        headers : {'Content-Type' : 'applicatiom/json'},
+        body : JSON.stringify(userId)
+      });
+      // Convertimos a JSON la respuesta
+      const data = await resUser.json();
+      const userData = await data[0];
+      firstName = userData.firstName;
+    } catch(err) {
+      console.error(err);
+    }
 
     try{
       // Convertimos a tipo JSON ell numero de habitacion 
@@ -82,7 +99,7 @@ const FormularioNoche = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         // Convertimos a JSON los valores
-        body: JSON.stringify({cutomerName, telephoneNumber, arriveDay, departureDay, totalCost, idRoom, idUser, roomType})
+        body: JSON.stringify({cutomerName, telephoneNumber, arriveDay, departureDay, totalCost, idRoom, idUser, roomType, firstName})
       });
 
       // Verificmaos la respuesta del servidor
