@@ -7,10 +7,8 @@ const FormularioNoche = () => {
   const [telephoneNumber, setTelefono] = useState("");
   const [arriveDay, setDiaEntrada] = useState("");
   const [departureDay, setDiaSalida] = useState("");
-  const [totalCost, setTotal] = useState("");
-  const [noHabitacion, setNoHabitacion] = useState("");
-  const [tipoHabitacion, setTipoHabitacion] = useState("");
-  const [recepcionista, setRecepcionista] = useState("");
+  let [roomNumber, setNoHabitacion] = useState("");
+  const idUser = localStorage.getItem('id');
 
   //Manejadores de eventos
   const handleNombre = (e) => {
@@ -23,10 +21,6 @@ const FormularioNoche = () => {
 
   const handleNoHabitacion = (e) => {
     setNoHabitacion(e.target.value);
-  }
-
-  const handleTipoHabitacion = (e) => {
-    setTipoHabitacion(e.target.value);
   }
 
   const handleDiaEntrada = (e) => {
@@ -42,19 +36,11 @@ const FormularioNoche = () => {
     setDiaSalida(e.target.value);
   }
 
-  const handleRecepcionista = (e) => {
-    setRecepcionista(e.target.value);
-  }
-
-  const handleTotal = (e) => {
-    setTotal(e.target.value);
-  }
-
   const handelSubmit = async (e) => {
     e.preventDefault();
 
     // Validacion de que todos los campos esten completos
-    if(!cutomerName || !telephoneNumber || !noHabitacion || !tipoHabitacion || !arriveDay || !departureDay || !recepcionista || !totalCost) {
+    if(!cutomerName || !telephoneNumber || !roomNumber || !arriveDay || !departureDay) {
       alert("Todos los datos son obligatorios")
       return
     }
@@ -64,24 +50,46 @@ const FormularioNoche = () => {
       alert('Numero de telefono no valido, intentelo nuevamnete');
       return
     }
-    const idRoom = '6722a733aab354ab12f660b5'
-    const idUser = '67228ab60304d0ce1c51fbe4'
+
+    // Declaramos las variables donde se guarda infromacion de la habitacion
+    let idRoom;
+    let totalCost;
+
+    try{
+      // Convertimos a tipo JSON ell numero de habitacion 
+      roomNumber = {roomNumber : roomNumber};
+      const resRoom = await fetch('http://localhost:9292/find/rooms',{
+        method : 'POST',
+        headers: {'Content-Type' : 'application/json'},
+        body : JSON.stringify(roomNumber)
+      });
+
+      // Convertimos a JSON la respuesta
+      const data = await resRoom.json();
+      // Obtenemos la informacion de la habitacion y las asignamos a las variables
+      const roomData = await data[0];
+      idRoom = roomData._id;
+      totalCost = roomData.cost;
+    } catch (err) {
+      console.log("Error en POST de habitacion", err);
+    }
+
     try {
+      // Creamos la peticion a la API
       const res = await fetch("http://localhost:9292/insert/reservationNights", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        // Convertimos a JSON los valores
         body: JSON.stringify({cutomerName, telephoneNumber, arriveDay, departureDay, totalCost, idRoom, idUser})
       });
 
-      //La respuesta del servidor la convertimos a JSON
-      const data = await res.json();
-      console.log(res.status)
-
-      if(data.code === 200){
+      // Verificmaos la respuesta del servidor
+      if(res.status === 201){
         alert("Servicio registrado correctamente")
       } else {
         alert("Ocurrio un error, intentelo nuevamente");
       }
+      return
     } catch (err) {
       console.error("Error: ", err);
     }
@@ -92,11 +100,8 @@ const FormularioNoche = () => {
     setNombre('');  
     setTelefono('');      
     setNoHabitacion('');
-    setTipoHabitacion('');
     setDiaEntrada('');
     setDiaSalida('');
-    setRecepcionista('');
-    setTotal('');
   }
   
   return (
@@ -137,25 +142,12 @@ const FormularioNoche = () => {
             <input
               type="text"
               id="noHabitacion"
-              value={noHabitacion}
+              value={roomNumber}
               onChange={handleNoHabitacion}
               className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
             />
           </div>
           <div className="flex flex-col w-1/3">
-            <label htmlFor="tipoDeHabitacion" className="px-5">
-              Tipo de habitación
-            </label>
-            <select
-              id="tipoDeHabitacion"
-              value={tipoHabitacion}
-              onChange={handleTipoHabitacion}
-              className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
-            >
-              <option value="Matrimonial">Matrimonial</option>
-              <option value="King Size">King Size</option>
-              <option value="Doble">Doble</option>
-            </select>
           </div>
         </FormRow>
         <FormRow>
@@ -186,28 +178,8 @@ const FormularioNoche = () => {
         </FormRow>
         <FormRow>
           <div className="flex flex-col w-1/3">
-            <label htmlFor="recepcionista" className="px-5">
-              Recepcionista
-            </label>
-            <input
-              type="text"
-              id="recepcionista"
-              value={recepcionista}
-              onChange={handleRecepcionista}
-              className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
-            />
           </div>
           <div className="flex flex-col w-1/3">
-            <label htmlFor="total" className="px-5">
-              Total
-            </label>
-            <input
-              type="number"
-              id="total"
-              value={totalCost}
-              onChange={handleTotal}
-              className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
-            />
           </div>
         </FormRow>
         <FormRow>
