@@ -111,13 +111,14 @@ function Navbar() {
             </li>
             </ul>
         </Link>
-        <Link to='' className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
+        <Link to='/' className="px-4 py-2 hover:text-black hover:bg-teal-700 rounded-full">
           <li className="block m-2">
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
             viewBox="0 0 24 24" 
             fill="currentColor" 
             className="size-10"
+            onClick={() => localStorage.clear()} // Limpia el localStorage al hacer clic
           >
             <path 
               fillRule="evenodd" 
