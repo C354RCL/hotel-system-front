@@ -52,6 +52,16 @@ const HistorialReservas = () => {
     setFilteredData(filtered);
   };
 
+  const handleResetFilters = e => {
+    e.preventDefault();
+    setFilters({
+      nombre: "",
+      fecha: "",
+      tipo: "",
+    });
+    setFilteredData(reservacionesClientesData); // Restablece los datos filtrados a los originales
+  }
+
   return (
     <div className='p-10 w-full place-content-center'>
       <h1 className='text-3xl'>Historial de reservas</h1>
@@ -92,6 +102,7 @@ const HistorialReservas = () => {
           <button
             type="button"
             className="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 m-6 "
+            onClick={handleResetFilters}
           >
             Borrar filtros
           </button>

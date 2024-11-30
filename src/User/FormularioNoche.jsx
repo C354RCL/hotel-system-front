@@ -3,7 +3,7 @@ import FormRow from "./FormRow.jsx";
 
 const FormularioNoche = () => {
   // Se inicializan las varaivbles como cadenas vacias
-  const [cutomerName, setNombre] = useState("");
+  const [customerName, setNombre] = useState("");
   const [telephoneNumber, setTelefono] = useState("");
   const [arriveDay, setDiaEntrada] = useState("");
   const [departureDay, setDiaSalida] = useState("");
@@ -40,7 +40,7 @@ const FormularioNoche = () => {
     e.preventDefault();
 
     // Validacion de que todos los campos esten completos
-    if(!cutomerName || !telephoneNumber || !roomNumber || !arriveDay || !departureDay) {
+    if(!customerName || !telephoneNumber || !roomNumber || !arriveDay || !departureDay) {
       alert("Todos los datos son obligatorios")
       return
     }
@@ -101,7 +101,7 @@ const FormularioNoche = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         // Convertimos a JSON los valores
-        body: JSON.stringify({cutomerName, telephoneNumber, arriveDay, departureDay, totalCost, idRoom, idUser, roomType, firstName, roomNumber})
+        body: JSON.stringify({customerName, telephoneNumber, arriveDay, departureDay, totalCost, idRoom, idUser, roomType, firstName, roomNumber})
       });
 
       // Verificmaos la respuesta del servidor
@@ -137,7 +137,7 @@ const FormularioNoche = () => {
             <input
               type="text"
               id="nombre"
-              value={cutomerName}
+              value={customerName}
               onChange={handleNombre}
               className="mx-5 p-2 dark:text-teal-950 border border-fuchsia-950 dark:border-teal-50 focus:outline-none"
             />
