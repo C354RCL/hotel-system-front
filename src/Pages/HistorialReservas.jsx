@@ -59,7 +59,7 @@ const HistorialReservas = () => {
       fecha: "",
       tipo: "",
     });
-    setFilteredData(reservacionesClientesData); // Restablece los datos filtrados a los originales
+    setFilteredData(reservacionesData); // Restablece los datos filtrados a los originales
   }
 
   return (
@@ -108,7 +108,10 @@ const HistorialReservas = () => {
           </button>
         </form>
       </div>
-      <TablaReserva reservaciones={filteredData} />
+      {filteredData.length > 0 && (
+        <TablaReserva reservaciones={filteredData} />
+      )}
+      {filteredData.length === 0 && <p>Cargando datos...</p>}
     </div>
   );
 };

@@ -134,7 +134,10 @@ const HistorialReservas = () => {
           </button>
         </form>
       </div>
-      <TablaClientesReserva reservaciones={filteredData} />
+      {filteredData.length > 0 && (
+        <TablaClientesReserva reservaciones={filteredData} />
+      )}
+      {filteredData.length === 0 && <p>Cargando datos...</p>}
     </div>
   );
 };

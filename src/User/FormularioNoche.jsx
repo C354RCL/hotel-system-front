@@ -8,6 +8,7 @@ const FormularioNoche = () => {
   const [arriveDay, setDiaEntrada] = useState("");
   const [departureDay, setDiaSalida] = useState("");
   let [roomNumber, setNoHabitacion] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // Estado para controlar la alerta
   const idUser = localStorage.getItem('id');
 
   //Manejadores de eventos
@@ -56,6 +57,9 @@ const FormularioNoche = () => {
     let totalCost;
     let roomType;
     let firstName;
+
+    setIsLoading(true); // Inicia el estado de carga
+    alert("Ingresando servicio, espere un momento..."); // Muestra alerta al usuario
 
     try{
       //Convertimos a tipo JSON el id del usuario
@@ -113,6 +117,8 @@ const FormularioNoche = () => {
       return
     } catch (err) {
       console.error("Error: ", err);
+    } finally {
+      setIsLoading(false); // Finaliza el estado de carga
     }
   }
 
@@ -208,7 +214,7 @@ const FormularioNoche = () => {
             onClick={handelSubmit}
             className="bg-teal-700 hover:bg-teal-950 text-white font-bold py-2 px-4 m-6 rounded-lg"
           >
-            Agregar
+            {isLoading ? "Procesando..." : "Agregar"}
           </button>
         </FormRow>
       </form>
