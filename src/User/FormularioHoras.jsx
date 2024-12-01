@@ -123,7 +123,7 @@ const FormularioHoras = () => {
 
   return (
     <div className="p-10 w-full place-content-center">
-      <h1 className="text-3xl text-center">Servicio por 4 horas</h1>
+      <h1 className="text-3xl text-center">Servicio por horas</h1>
       <form className="p-5 block justify-center">
         <FormRow>
           <div className="flex flex-col w-1/3">
