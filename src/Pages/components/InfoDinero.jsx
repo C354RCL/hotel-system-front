@@ -11,7 +11,7 @@ function InfoDinero(props) {
 }
 
 InfoDinero.propTypes = {
-  num: PropTypes.number.isRequired,
+  num: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired
 }
 
