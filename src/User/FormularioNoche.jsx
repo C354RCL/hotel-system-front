@@ -71,7 +71,8 @@ const FormularioNoche = () => {
       });
       // Convertimos a JSON la respuesta
       const data = await resUser.json();
-      const userData = await data[0];
+      // Buscamos el usuario correspondiente a idUser y lo asignamos a la variable
+      const userData = await data.find(user => user._id === idUser);
       firstName = userData.firstName;
     } catch(err) {
       console.error(err);
@@ -79,17 +80,17 @@ const FormularioNoche = () => {
 
     try{
       // Convertimos a tipo JSON ell numero de habitacion 
-      roomNumber = {roomNumber : roomNumber};
+      const roomPayload = {roomNumber : roomNumber};
       const resRoom = await fetch('http://localhost:9292/find/rooms',{
         method : 'POST',
         headers: {'Content-Type' : 'application/json'},
-        body : JSON.stringify(roomNumber)
+        body : JSON.stringify(roomPayload)
       });
 
       // Convertimos a JSON la respuesta
       const data = await resRoom.json();
       // Obtenemos la informacion de la habitacion y las asignamos a las variables
-      const roomData = await data[0];
+      const roomData = await data.find(room => room.roomNumber == roomNumber);
       idRoom = roomData._id;
       totalCost = roomData.cost;
       roomType = roomData.roomType;
@@ -98,8 +99,6 @@ const FormularioNoche = () => {
     }
 
     try {
-      roomNumber = roomNumber.roomNumber;
-      console.log(roomNumber)
       // Creamos la peticion a la API
       const res = await fetch("http://localhost:9292/insert/reservationNights", {
         method: "POST",
