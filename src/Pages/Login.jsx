@@ -20,47 +20,63 @@ export function Login() {
   //Manejador de eventos de boton Iniciar Sesion
   const handleLogIn = async e => {
     e.preventDefault();
-
-    try{
-      // Validacion de que los campos esten completos
-      if(user === '' || password === '') {
+  
+    try {
+      // Validación de campos
+      if (user === '' || password === '') {
         alert('Se requiere llenar todos los campos');
         return;
       }
-
+  
       // Limpiamos el localStorage
       localStorage.clear();
-      // Guardamos user en el localStorage
-      localStorage.setItem("user", user);
-      //Cambio los nombres para que hagan match con los campos de la base de datos
+  
+      // Realizamos la solicitud a la API
       const res = await fetch('http://localhost:9292/find/users', {
-        method : 'POST',
-        mode : "cors",
-        headers : {"Content-Type" : "application/json"},
-        //Se hace el JSON que tenga la misma forma que en la base de datos con las variables iguales a los nombres
-        body : JSON.stringify({user, password})
+        method: 'POST',
+        mode: 'cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user, password }),
       });
+  
       const data = await res.json();
-      console.log('Data',data.code);
-      const userData = await data[0];
-      const idUser = userData._id;
-      localStorage.setItem('id', idUser);
-
-
-      if(await data.code == 404){
+  
+      // Verificamos si la API devolvió un código de error
+      if (data.code === '404') {
         alert('Usuario y/o contraseña incorrecta');
-        return
-      }  else if (await userData.position == 'Admin'){
-        navigate("/nuevo");
-        return
-      } else if (await userData.position === 'Recepcionista') {
-        navigate("/admin/inicio");
-        return
-      } 
+        return;
+      }
+  
+      // Buscamos el usuario en el arreglo de usuarios (si `data` es un arreglo)
+      if (Array.isArray(data)) {
+        const userData = data.find(
+          item => item.user === user && item.password === password
+        );
+  
+        if (!userData) {
+          alert('Usuario y/o contraseña incorrecta');
+          return;
+        }
+  
+        // Guardamos los datos en el localStorage
+        localStorage.setItem('user', userData.user);
+        localStorage.setItem('id', userData._id);
+  
+        // Redirigimos según el rol del usuario
+        if (userData.position === 'Admin') {
+          navigate('/admin/inicio');
+        } else if (userData.position === 'Recepcionista') {
+          navigate('/nuevo');
+        }
+      } else {
+        console.error('Formato de datos inesperado:', data);
+        alert('Error al procesar la respuesta de la API.');
+      }
     } catch (err) {
-      console.error("Error: ", err)
+      alert('Ocurrió un error al iniciar sesión. Intente nuevamente.');
     }
-  }
+  };
+  
   
   return (
     <div className="flex items-center justify-center h-screen overflow-hidden">
