@@ -119,6 +119,7 @@ const FormularioHoras = () => {
     setDiaEntrada('');
     setHoraEntrada('');
     setHoraSalida('');
+    setVehiculo('');
   }
 
   return (

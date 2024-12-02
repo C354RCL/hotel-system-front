@@ -66,7 +66,7 @@ const FormularioNoche = () => {
       const userId ={idUser : idUser}
       const resUser = await fetch('http://localhost:9292/find/users', {
         method : 'POST',
-        headers : {'Content-Type' : 'application/json'},
+        headers : {'Content-Type' : 'applicatiom/json'},
         body : JSON.stringify(userId)
       });
       // Convertimos a JSON la respuesta
